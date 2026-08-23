@@ -22,7 +22,4 @@ class ProductoAdmin(admin.ModelAdmin):
         return "Sin imagen"
 
     mostrar_imagen_detalle.short_description = 'Previsualización de la Imagen'
-
-
-admin.site.register(Categoria)
-# Register your models here.
+    admin.site.register(Categoria)
