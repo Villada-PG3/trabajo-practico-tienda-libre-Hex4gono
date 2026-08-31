@@ -12,7 +12,7 @@ TiendaLibre - Inicio
     Bienvenido a TiendaLibre
 </h1>
 
-{% if True %}
+{% if usuario_logueado == True %}
 
     <h2 class="text-center mb-4">
         Productos destacados
@@ -27,11 +27,7 @@ TiendaLibre - Inicio
                             <h5 class="card-title">{{ producto.nombre }}</h5>
                             <p class="card-text">{{ producto.descripcion }}</p>
                             <p class="card-text">
-                                        {%if producto.precio == None %} 
-                                            Precio no disponible
-                                        {% else %}
-                                            Precio: ${{ producto.precio }}
-                                        {% endif %}
+                                        Precio: ${{ producto.precio|default:"No disponible" }}
                             </p>
                         </div>
                     </div>
