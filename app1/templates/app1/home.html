@@ -1,5 +1,9 @@
 {% extends "app1/base.html" %}
 
+{% block title %}
+TiendaLibre - Inicio
+{% endblock %}
+
 {% block content %}
 
 {% with usuario_logueado=True %}
@@ -8,7 +12,7 @@
     Bienvenido a TiendaLibre
 </h1>
 
-{% if usuario_logueado == True %}
+{% if True %}
 
     <h2 class="text-center mb-4">
         Productos destacados
@@ -17,38 +21,19 @@
     <div class="row g-4">
 
         {% for producto in productos %}
-
-            <div class="col-md-4">
-
-                <article class="card h-100">
-                    <div class="card-body">
-
-                        <h3 class="h5">
-                            {{ producto.nombre }}
-                        </h3>
-
-                        <p>
-                            Marca: {{ producto.marca }}
-                        </p>
-
-                        <p>
-                            {{ producto.descripcion }}
-                        </p>
-
-                        <p>
-                            Precio: ${{ producto.precio }}
-                        </p>
-
-                        {% if producto.stock <= 5 %}
-                            <p class="text-danger fw-bold">
-                                Stock: {{ producto.stock }} unidades
+            <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body"> 
+                            <h5 class="card-title">{{ producto.nombre }}</h5>
+                            <p class="card-text">{{ producto.descripcion }}</p>
+                            <p class="card-text">
+                                        {%if producto.precio == None %} 
+                                            Precio no disponible
+                                        {% else %}
+                                            Precio: ${{ producto.precio }}
+                                        {% endif %}
                             </p>
-                        {% else %}
-                            <p class="text-success">
-                                Stock: {{ producto.stock }} unidades
-                            </p>
-                        {% endif %}
-
+                        </div>
                     </div>
                 </article>
 
