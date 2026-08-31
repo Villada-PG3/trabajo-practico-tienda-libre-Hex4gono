@@ -1,0 +1,60 @@
+{% extends "app1/base.html" %}
+
+{% block title %}
+Productos
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center; font-size: 40px; margin-top: 50px; margin-bottom: 100px;">
+    Productos
+</h1>
+
+
+
+<table border="1" cellpadding="10" width="100%">
+
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Marca</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for producto in productos %}
+
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>${{ producto.precio }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.marca }}</td>
+
+            <td>
+                {% if producto.imagen %}
+                    <img
+                        src="{{ producto.imagen.url }}"
+                        alt="{{ producto.nombre }}"
+                        width="100"
+                    >
+                {% else %}
+                    Sin imagen 
+                {% endif %}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
