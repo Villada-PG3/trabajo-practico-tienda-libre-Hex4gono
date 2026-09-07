@@ -33,4 +33,4 @@ def acerca_de_mi(request):
     return render(request, "app1/acerca_de_mi.html")
 
 def catalogo(request):
-    return render(request, "app1/catalogo.html", {"productos": Producto.objects.all()})
+    return render(request, "app1/catalogo.html", {"productos": Producto.objects.order_by('-fecha_creacion')})
