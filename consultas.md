@@ -10,7 +10,7 @@
 
 6. Producto.objects.filter(activo=True)
 
-7. Producto.objects.exclude(stock=0)
+7. Categoria.objects.create(nombre="Tecnologia",slug="tecnologia")
 
 8. Producto.objects.order_by("-precio")
 

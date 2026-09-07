@@ -10,7 +10,7 @@ class Categoria(models.Model):
         verbose_name_plural = "Categorias"
         ordering = ['nombre']
 
-    def _str_(self):
+    def __str__(self):
         return self.nombre
 class Producto(models.Model):
     categoria = models.ForeignKey(
@@ -34,5 +34,5 @@ class Producto(models.Model):
         verbose_name_plural = "Productos"
         ordering = ['nombre']
 
-    def _str_(self):
+    def __str__(self):
         return f'{self.nombre} - {self.marca} - ${self.precio} - Stock: {self.stock}'
