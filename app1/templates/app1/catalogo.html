@@ -1,0 +1,30 @@
+{% extends 'app1/base.html' %}
+
+{% block title %}Catalogo{% endblock %}
+
+{% block content %}
+    <h1>Catalogo</h1>
+    <p>Bienvenido al catalogo de productos.</p>
+<h1 style="text-align: center; font-size: 40px; margin-top: 50px; margin-bottom: 100px;">
+    Catálogo de Productos
+</h1>
+<row>
+    <div class="col-md-12">
+        <div class="row">
+            {% for producto in productos %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.nombre }}</h5>
+                            <p class="card-text">{{ producto.descripcion }}</p>
+                            <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
+                            <p class="card-text"><strong>Stock:</strong> {{ producto.stock }}</p>
+                            <p class="card-text"><strong>Marca:</strong> {{ producto.marca }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

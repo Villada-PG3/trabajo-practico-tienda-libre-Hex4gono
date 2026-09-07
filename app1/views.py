@@ -31,3 +31,6 @@ def home(request):
 
 def acerca_de_mi(request):
     return render(request, "app1/acerca_de_mi.html")
+
+def catalogo(request):
+    return render(request, "app1/catalogo.html", {"productos": Producto.objects.all()})
