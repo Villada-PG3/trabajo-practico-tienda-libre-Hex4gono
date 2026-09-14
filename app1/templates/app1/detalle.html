@@ -1,0 +1,41 @@
+{% extends "app1/base.html" %}
+
+{% block title %}
+{{ producto.nombre }} - TiendaLibre
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+            {% endif %}
+            <div class="card-body">
+                <h2 class="card-title">{{ producto.nombre }}</h2>
+                <p class="card-text">{{ producto.descripcion }}</p>
+                <p class="card-text">
+                    {% if producto.precio %}
+                        Precio: ${{ producto.precio|floatformat:2 }}
+                    {% else %}
+                        Precio no disponible
+                    {% endif %}
+                </p>
+                <p class="card-text">
+                    {% if producto.stock > 0 %}
+                        <span class="badge bg-success">En stock ({{ producto.stock }} unidades)</span>
+                    {% else %}
+                        <span class="badge bg-danger">Sin stock</span>
+                    {% endif %}
+                </p>
+
+                <a href="{% url 'home' %}" class="btn btn-secondary mt-3">
+                    ← Volver al catálogo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

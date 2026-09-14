@@ -16,7 +16,11 @@
                 <div class="card h-100">
                     <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <h5 class="card-title">
+                        <a href="{% url 'detalle_producto' producto.pk %}" class="text-decoration-none">
+                        {{ producto.nombre }}
+                        </a>
+                        </h5>
                         <p class="card-text">{{ producto.descripcion }}</p>
                         <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
                         <p class="card-text"><strong>Stock:</strong> {{ producto.stock }}</p>
