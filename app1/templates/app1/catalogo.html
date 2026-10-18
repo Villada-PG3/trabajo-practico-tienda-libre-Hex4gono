@@ -14,7 +14,9 @@
         {% for producto in productos|slice:":3" %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">
                         <a href="{% url 'detalle_producto' producto.pk %}" class="text-decoration-none">
@@ -39,7 +41,9 @@
             {% for producto in productos %}
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
-                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        {% if producto.imagen %}
+                            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ producto.nombre }}</h5>
                             <p class="card-text">{{ producto.descripcion }}</p>
