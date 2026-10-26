@@ -1,0 +1,54 @@
+{% extends 'app1/base.html' %}
+
+{% block title %}{{ categoria.nombre }} | TiendaLibre{% endblock %}
+
+{% block content %}
+    <h1>{{ categoria.nombre }}</h1>
+    <div class="row">
+        {% for producto in productos %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="h5 card-title">
+                            <a href="{% url 'detalle_producto' producto.pk %}" class="text-decoration-none">{{ producto.nombre }}</a>
+                        </h2>
+                        <p class="card-text">{{ producto.descripcion }}</p>
+                        <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
+                        <p class="card-text"><strong>Stock:</strong> {{ producto.stock }}</p>
+                        <p class="card-text"><strong>Marca:</strong> {{ producto.marca }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No hay productos en esta categoría.</p>
+        {% endfor %}
+    </div>
+    {% if is_paginated %}
+        <nav aria-label="Paginación de productos">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+                {% endif %}
+                {% for page_number in page_range %}
+                    {% if page_number == paginator.ELLIPSIS %}
+                        <li class="page-item disabled"><span class="page-link">{{ page_number }}</span></li>
+                    {% elif page_number == page_obj.number %}
+                        <li class="page-item active" aria-current="page"><span class="page-link">{{ page_number }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

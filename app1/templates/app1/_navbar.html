@@ -15,6 +15,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'catalogo' %}">Catálogo</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle border-0 bg-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorías
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% for categoria in categorias %}
+                            <li><a class="dropdown-item" href="{% url 'categoria' categoria.slug %}">{{ categoria.nombre }}</a></li>
+                        {% empty %}
+                            <li><span class="dropdown-item-text">No hay categorías</span></li>
+                        {% endfor %}
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
