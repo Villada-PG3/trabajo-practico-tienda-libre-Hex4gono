@@ -6,7 +6,7 @@ urlpatterns = [
     path("productos/", views.productos, name="productos"),
     path("acerca_de_mi/", views.acerca_de_mi, name="acerca_de_mi"),
     path("catalogo/", views.CatalogoView.as_view(), name="catalogo"),
-    path('producto/<int:pk>/', views.detalle_producto, name='detalle_producto'),
+    path('producto/<int:pk>/', views.DetalleProductoView.as_view(), name='detalle_producto'),
 ]
 def include_app1_urls():
     return include((urlpatterns, 'app1'), namespace='app1')

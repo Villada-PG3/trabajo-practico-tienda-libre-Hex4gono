@@ -1,6 +1,5 @@
-from django.views.generic import ListView, TemplateView
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.views.generic import DetailView, ListView, TemplateView
+from django.shortcuts import render
 from .models import Producto
 # Create your views here.
 def productos(request):
@@ -31,7 +30,17 @@ class CatalogoView(ListView):
     template_name = "app1/catalogo.html"
     context_object_name = "productos"
     ordering = "-fecha_creacion"
+    paginate_by = 6
 
-def detalle_producto(request, pk):
-    producto = get_object_or_404(Producto, pk=pk)
-    return render(request, 'app1/detalle.html', {'producto': producto})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_range"] = context["paginator"].get_elided_page_range(
+            context["page_obj"].number
+        )
+        return context
+
+
+class DetalleProductoView(DetailView):
+    model = Producto
+    template_name = "app1/detalle.html"
+    context_object_name = "producto"
